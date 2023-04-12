@@ -4,7 +4,7 @@ export default function NewsItem(props) {
   let { title, description, imageUrl, newsUrl, author, date } = props;
   return (
     <div className="md:w-96 rounded-2xl overflow-hidden shadow-lg m-4 bg-[#4b5c76]">
-      <img className="w-full" src={imageUrl} alt="Sunset in the mountains" />
+      <img className="w-full h-full object-cover" src={imageUrl} alt="Sunset in the mountains" />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-white">{title}</div>
         <p className="text-white text-opacity-90 text-base">

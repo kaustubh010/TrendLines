@@ -1,32 +1,16 @@
-import { React } from 'react'
-import { getArticlesByCategory } from "../utils/api";
-import NewsItem from '@/components/NewsItem';
+import { React, useState } from 'react'
+import News from '@/components/News';
+import LoadingBar from 'react-top-loading-bar'
 
-const Index = ({ articles }) => {
-
-  const capitalize = (string)=>{
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+const Index = () => {
+  const [progress, setProgress] = useState(0)
 
   return (
     <>
-      <h1 className="text-white text-center p-4 mt-24 text-3xl font-bold">PressPlay - Top {capitalize(articles.section)} Headlines</h1>
-      <div className="container">
-        <div className="flex flex-wrap justify-center mx-auto">
-          {articles.results.slice(2).map((element) => {
-            return <div className="col-md-4" key={element.url}>
-              <NewsItem title={element.title} description={element.abstract} imageUrl={element.multimedia[0].url} newsUrl={element.url} author={element.byline} date={element.published_date} />
-            </div>
-          })}
-        </div>
-      </div>
+    <LoadingBar height={3} color='#f11946' progress={progress} />
+    <News setProgress={setProgress} category='science'/>
     </>
   )
 }
-
-export const getServerSideProps = async () => {
-  const articles = await getArticlesByCategory("home");
-  return { props: { articles } };
-};
 
 export default Index
