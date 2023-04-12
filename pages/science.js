@@ -2,7 +2,7 @@ import { React } from 'react'
 import { getArticlesByCategory } from "../utils/api";
 import NewsItem from '@/components/NewsItem';
 
-const Index = ({ articles }) => {
+const Science = ({ articles }) => {
 
   const capitalize = (string)=>{
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -25,8 +25,8 @@ const Index = ({ articles }) => {
 }
 
 export const getServerSideProps = async () => {
-  const articles = await getArticlesByCategory("home");
+  const articles = await getArticlesByCategory("science");
   return { props: { articles } };
 };
 
-export default Index
+export default Science

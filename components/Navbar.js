@@ -9,6 +9,7 @@ import { BiWorld, BiMoney } from 'react-icons/bi'
 import { SiDcentertainment } from 'react-icons/si'
 import { MdScience } from 'react-icons/md'
 import { FaGamepad } from 'react-icons/fa'
+import Link from 'next/link'
 
 const Navbar = () => {
     const ref = useRef()
@@ -39,71 +40,74 @@ const Navbar = () => {
                     <span onClick={toggleNav} className='text-white text-3xl absolute right-4'><AiOutlineClose /></span>
                     <ul className="space-y-2 font-medium">
                         <li className='mb-6'>
-                            <span className="ml-5 text-white text-2xl">Home</span>
+                            <span className="ml-5 text-white text-2xl">Menu</span>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <Link href="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <span className='text-2xl text-gray-300'><GiNewspaper /></span>
                                 <span className="flex-1 ml-3 whitespace-nowrap">HeadLines</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <Link href="/sports" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <span className='text-2xl'><FcSportsMode /></span>
                                 <span className="flex-1 ml-3 whitespace-nowrap">Sports</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <Link href="/technology" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <span className='text-2xl'><GrTechnology /></span>
                                 <span className="flex-1 ml-3 whitespace-nowrap">Technology</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <Link href="/world" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <span className='text-2xl text-gray-300'><BiWorld /></span>
                                 <span className="flex-1 ml-3 whitespace-nowrap">World</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <Link href="/finance" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <span className='text-2xl text-gray-300'><BiMoney /></span>
                                 <span className="flex-1 ml-3 whitespace-nowrap">Finance</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <Link href="/entertainment" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <span className='text-2xl text-gray-300'><SiDcentertainment /></span>
                                 <span className="flex-1 ml-3 whitespace-nowrap">Entertainment</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <Link href="/science" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <span className='text-2xl text-gray-300'><MdScience /></span>
                                 <span className="flex-1 ml-3 whitespace-nowrap">Science</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <Link href="/gaming" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <span className='text-2xl text-gray-300'><FaGamepad /></span>
                                 <span className="flex-1 ml-3 whitespace-nowrap">Gaming</span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
             </aside>
-            <header className="text-gray-600 body-font bg-gray-900">
-                <div className="container mx-auto flex flex-wrap p-5 flex-row items-center">
+            <header className="text-gray-600 fixed top-0 w-full body-font bg-gray-900">
+                <div className="container mx-auto flex flex-wrap p-4 flex-row items-center">
                     <span onClick={toggleNav} className='text-3xl text-white md:hidden block cursor-pointer'><HiMenuAlt1 /></span>
-                    <a className="flex title-font font-medium items-center text-gray-900 md:mb-0 cursor-pointer mx-16">
+                    <Link href={'/'} className="flex title-font font-medium items-center text-gray-900 md:mb-0 cursor-pointer mr-16">
                         <span className='text-5xl text-red-500'><TiNews /></span>
-                        <span className="text-white ml-3 text-xl">Press Play</span>
-                    </a>
+                        <span className="text-white ml-3 text-xl">TrendLines</span>
+                    </Link>
                     <nav className="md:ml-auto md:flex flex-wrap items-center text-base justify-center space-x-6 mr-10 hidden">
-                        <a className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">First Link</a>
-                        <a className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Second Link</a>
-                        <a className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Third Link</a>
-                        <a className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Fourth Link</a>
+                        <Link href={'/sports'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Sports</Link>
+                        <Link href={'/technology'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Technology</Link>
+                        <Link href={'/world'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">World</Link>
+                        <Link href={'/finance'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Finance</Link>
+                        <Link href={'/entertainment'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Entertainment</Link>
+                        <Link href={'/science'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Science</Link>
+                        <Link href={'/gaming'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Gaming</Link>
                     </nav>
                     <form className='hidden md:block'>
                         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-white sr-only dark:text-white">Search</label>

@@ -2,7 +2,7 @@ import { React } from 'react'
 import { getArticlesByCategory } from "../utils/api";
 import NewsItem from '@/components/NewsItem';
 
-const Index = ({ articles }) => {
+const Entertainment = ({ articles }) => {
 
   const capitalize = (string)=>{
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -10,7 +10,7 @@ const Index = ({ articles }) => {
 
   return (
     <>
-      <h1 className="text-white text-center p-4 mt-24 text-3xl font-bold">PressPlay - Top {capitalize(articles.section)} Headlines</h1>
+      <h1 className="text-white mt-24 text-center p-4 text-3xl font-bold">PressPlay - Top {capitalize(articles.section)} Headlines</h1>
       <div className="container">
         <div className="flex flex-wrap justify-center mx-auto">
           {articles.results.slice(2).map((element) => {
@@ -25,8 +25,8 @@ const Index = ({ articles }) => {
 }
 
 export const getServerSideProps = async () => {
-  const articles = await getArticlesByCategory("home");
+  const articles = await getArticlesByCategory("entertainment");
   return { props: { articles } };
 };
 
-export default Index
+export default Entertainment
