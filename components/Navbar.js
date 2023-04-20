@@ -7,8 +7,7 @@ import { FcSportsMode } from 'react-icons/fc'
 import { GrTechnology } from 'react-icons/gr'
 import { BiWorld, BiMoney } from 'react-icons/bi'
 import { SiDcentertainment } from 'react-icons/si'
-import { MdScience } from 'react-icons/md'
-import { FaGamepad } from 'react-icons/fa'
+import { MdScience, MdOutlineHealthAndSafety } from 'react-icons/md'
 import Link from 'next/link'
 
 const Navbar = () => {
@@ -85,9 +84,9 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/gaming" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span className='text-2xl text-gray-300'><FaGamepad /></span>
-                                <span className="flex-1 ml-3 whitespace-nowrap">Gaming</span>
+                            <Link href="/health" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span className='text-2xl text-gray-300'><MdOutlineHealthAndSafety /></span>
+                                <span className="flex-1 ml-3 whitespace-nowrap">Health</span>
                             </Link>
                         </li>
                     </ul>
@@ -96,7 +95,7 @@ const Navbar = () => {
             <header className="text-gray-600 fixed top-0 w-full body-font bg-gray-900">
                 <div className="container mx-auto flex flex-wrap p-4 flex-row items-center">
                     <span onClick={toggleNav} className='text-3xl text-white md:hidden block cursor-pointer'><HiMenuAlt1 /></span>
-                    <Link href={'/'} className="flex title-font font-medium items-center text-gray-900 md:mb-0 cursor-pointer mr-16">
+                    <Link href={'/'} className="flex justify-center title-font font-medium items-center text-gray-900 md:mb-0 md:ml-0 cursor-pointer ml-16">
                         <span className='text-5xl text-red-500'><TiNews /></span>
                         <span className="text-white ml-3 text-xl">TrendLines</span>
                     </Link>
@@ -107,7 +106,7 @@ const Navbar = () => {
                         <Link href={'/finance'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Finance</Link>
                         <Link href={'/entertainment'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Entertainment</Link>
                         <Link href={'/science'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Science</Link>
-                        <Link href={'/gaming'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Gaming</Link>
+                        <Link href={'/health'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Health</Link>
                     </nav>
                     <form className='hidden md:block'>
                         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-white sr-only dark:text-white">Search</label>

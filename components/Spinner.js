@@ -1,10 +1,9 @@
 import React from 'react'
-import loading from '../public/loading.gif'
 
 export default function Spinner() {
     return (
-      <div className='text-center'>
-          <img className='my-3' src={loading} alt="loading" />
+      <div className='text-center flex justify-center items-center'>
+          <img className='my-3' src={'/loading.gif'} alt="loading" />
       </div>
     )
 }

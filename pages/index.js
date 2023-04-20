@@ -8,7 +8,7 @@ const Index = () => {
   return (
     <>
     <LoadingBar height={3} color='#f11946' progress={progress} />
-    <News setProgress={setProgress} category='science'/>
+    <News setProgress={setProgress} category='all'/>
     </>
   )
 }

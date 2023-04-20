@@ -22,12 +22,12 @@ const Post = () => {
             <><LoadingBar height={3} color='#f11946' progress={progress} /><News setProgress={setProgress} category='world' /></>
         )
     }
-    else if (slug == "job market") {
+    else if (slug == "finance") {
         return (
-            <><LoadingBar height={3} color='#f11946' progress={progress} /><News setProgress={setProgress} category='job market' /></>
+            <><LoadingBar height={3} color='#f11946' progress={progress} /><News setProgress={setProgress} category='business' /></>
         )
     }
-    else if (slug == "movies") {
+    else if (slug == "entertainment") {
         return (
             <><LoadingBar height={3} color='#f11946' progress={progress} /><News setProgress={setProgress} category='movies' /></>
         )
@@ -37,9 +37,9 @@ const Post = () => {
             <><LoadingBar height={3} color='#f11946' progress={progress} /><News setProgress={setProgress} category='science' /></>
         )
     }
-    else if (slug == "crosswords & games") {
+    else if (slug == "health") {
         return (
-            <><LoadingBar height={3} color='#f11946' progress={progress} /><News setProgress={setProgress} category='crosswords & games' /></>
+            <><LoadingBar height={3} color='#f11946' progress={progress} /><News setProgress={setProgress} category='health' /></>
         )
     }
 }
