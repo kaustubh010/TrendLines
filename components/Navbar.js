@@ -1,4 +1,4 @@
-import { React, useRef } from 'react'
+import { React, useRef, useState } from 'react'
 import { TiNews } from 'react-icons/ti'
 import { HiMenuAlt1 } from 'react-icons/hi'
 import { AiOutlineClose } from 'react-icons/ai'
@@ -12,114 +12,171 @@ import Link from 'next/link'
 
 const Navbar = () => {
     const ref = useRef()
+    const [isOpen, setIsOpen] = useState(false)
+
     const toggleNav = () => {
+        setIsOpen(!isOpen)
         if (ref.current.classList.contains('-translate-x-full')) {
             ref.current.classList.remove('-translate-x-full')
             ref.current.classList.add('translate-x-0')
-        }
-        else if (!ref.current.classList.contains('translate-x-full')) {
+        } else {
             ref.current.classList.remove('translate-x-0')
             ref.current.classList.add('-translate-x-full')
         }
     }
+
+    const closeNav = () => {
+        setIsOpen(false)
+        ref.current.classList.remove('translate-x-0')
+        ref.current.classList.add('-translate-x-full')
+    }
+
+    const navItems = [
+        { href: '/', label: 'Headlines', icon: GiNewspaper, color: 'text-blue-400' },
+        { href: '/sports', label: 'Sports', icon: FcSportsMode, color: 'text-orange-400' },
+        { href: '/technology', label: 'Technology', icon: GrTechnology, color: 'text-purple-400' },
+        { href: '/world', label: 'World', icon: BiWorld, color: 'text-green-400' },
+        { href: '/finance', label: 'Finance', icon: BiMoney, color: 'text-emerald-400' },
+        { href: '/entertainment', label: 'Entertainment', icon: SiDcentertainment, color: 'text-pink-400' },
+        { href: '/science', label: 'Science', icon: MdScience, color: 'text-cyan-400' },
+        { href: '/health', label: 'Health', icon: MdOutlineHealthAndSafety, color: 'text-red-400' },
+    ]
+
     return (
         <>
-            <aside ref={ref} id="logo-sidebar" className="md:hidden fixed top-0 left-0 z-40 w-[100vw] h-[100vh] -translate-x-full transition-transform" aria-label="Sidebar">
-                <div className="flex flex-col h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-                    <form className='block'>
-                        <label htmlFor="default-search" className="mb-2 text-sm font-medium text-white sr-only dark:text-white">Search</label>
-                        <div className="relative left-5 bottom-2 w-72">
-                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg aria-hidden="true" className="w-5 h-5 text-white dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                            </div>
-                            <input type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search News!" required />
-                            <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+            {/* Mobile Overlay */}
+            {isOpen && (
+                <div 
+                    onClick={closeNav}
+                    className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-30 transition-opacity duration-300"
+                />
+            )}
+
+            {/* Mobile Sidebar */}
+            <aside 
+                ref={ref} 
+                className="md:hidden fixed top-0 left-0 z-40 w-80 h-screen -translate-x-full transition-transform duration-300 ease-in-out"
+            >
+                <div className="flex flex-col h-full bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 shadow-2xl">
+                    {/* Mobile Header */}
+                    <div className="flex items-center justify-between p-6 border-b border-slate-700/50">
+                        <div className="flex items-center space-x-3">
+                            <span className='text-4xl text-red-500 drop-shadow-lg'><TiNews /></span>
+                            <span className="text-white text-2xl font-bold tracking-tight">TrendLines</span>
                         </div>
-                    </form>
-                    <span onClick={toggleNav} className='text-white text-3xl absolute right-4'><AiOutlineClose /></span>
-                    <ul className="space-y-2 font-medium">
-                        <li className='mb-6'>
-                            <span className="ml-5 text-white text-2xl">Menu</span>
-                        </li>
-                        <li>
-                            <Link href="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span className='text-2xl text-gray-300'><GiNewspaper /></span>
-                                <span className="flex-1 ml-3 whitespace-nowrap">HeadLines</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/sports" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span className='text-2xl'><FcSportsMode /></span>
-                                <span className="flex-1 ml-3 whitespace-nowrap">Sports</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/technology" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span className='text-2xl'><GrTechnology /></span>
-                                <span className="flex-1 ml-3 whitespace-nowrap">Technology</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/world" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span className='text-2xl text-gray-300'><BiWorld /></span>
-                                <span className="flex-1 ml-3 whitespace-nowrap">World</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/finance" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span className='text-2xl text-gray-300'><BiMoney /></span>
-                                <span className="flex-1 ml-3 whitespace-nowrap">Finance</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/entertainment" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span className='text-2xl text-gray-300'><SiDcentertainment /></span>
-                                <span className="flex-1 ml-3 whitespace-nowrap">Entertainment</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/science" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span className='text-2xl text-gray-300'><MdScience /></span>
-                                <span className="flex-1 ml-3 whitespace-nowrap">Science</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/health" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <span className='text-2xl text-gray-300'><MdOutlineHealthAndSafety /></span>
-                                <span className="flex-1 ml-3 whitespace-nowrap">Health</span>
-                            </Link>
-                        </li>
-                    </ul>
+                        <button 
+                            onClick={toggleNav}
+                            className='text-white hover:text-red-500 transition-colors duration-200 p-2 hover:bg-slate-700/50 rounded-lg'
+                        >
+                            <AiOutlineClose size={24} />
+                        </button>
+                    </div>
+
+                    {/* Mobile Search */}
+                    <div className="p-6 border-b border-slate-700/50">
+                        <form onSubmit={(e) => e.preventDefault()}>
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                                    <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </div>
+                                <input 
+                                    type="search" 
+                                    className="w-full py-3 pl-12 pr-4 text-sm text-white bg-slate-700/50 border border-slate-600 rounded-xl placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                                    placeholder="Search news..." 
+                                />
+                            </div>
+                        </form>
+                    </div>
+
+                    {/* Mobile Navigation */}
+                    <nav className="flex-1 overflow-y-auto py-4 px-4">
+                        <ul className="space-y-1">
+                            {navItems.map((item) => {
+                                const Icon = item.icon
+                                return (
+                                    <li key={item.href}>
+                                        <Link 
+                                            href={item.href}
+                                            onClick={closeNav}
+                                            className="flex items-center p-4 text-white rounded-xl hover:bg-slate-700/50 transition-all duration-200 group"
+                                        >
+                                            <span className={`text-2xl ${item.color} group-hover:scale-110 transition-transform duration-200`}>
+                                                <Icon />
+                                            </span>
+                                            <span className="ml-4 font-medium group-hover:text-red-400 transition-colors duration-200">
+                                                {item.label}
+                                            </span>
+                                        </Link>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </nav>
                 </div>
             </aside>
-            <header className="text-gray-600 fixed top-0 w-full body-font bg-gray-900">
-                <div className="container mx-auto flex flex-wrap p-4 flex-row items-center">
-                    <span onClick={toggleNav} className='text-3xl text-white md:hidden block cursor-pointer'><HiMenuAlt1 /></span>
-                    <Link href={'/'} className="flex justify-center title-font font-medium items-center text-gray-900 md:mb-0 md:ml-0 cursor-pointer ml-16">
-                        <span className='text-5xl text-red-500'><TiNews /></span>
-                        <span className="text-white ml-3 text-xl">TrendLines</span>
-                    </Link>
-                    <nav className="md:ml-auto md:flex flex-wrap items-center text-base justify-center space-x-6 mr-10 hidden">
-                        <Link href={'/sports'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Sports</Link>
-                        <Link href={'/technology'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Technology</Link>
-                        <Link href={'/world'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">World</Link>
-                        <Link href={'/finance'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Finance</Link>
-                        <Link href={'/entertainment'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Entertainment</Link>
-                        <Link href={'/science'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Science</Link>
-                        <Link href={'/health'} className="hover:text-red-500 font-bold cursor-pointer text-white transition-colors duration-300">Health</Link>
-                    </nav>
-                    <form className='hidden md:block'>
-                        <label htmlFor="default-search" className="mb-2 text-sm font-medium text-white sr-only dark:text-white">Search</label>
-                        <div className="relative right-2 w-72">
-                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg aria-hidden="true" className="w-5 h-5 text-white dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+
+            {/* Desktop Header */}
+            <header className="fixed top-0 w-full z-20 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 shadow-lg border-b border-slate-700/50 backdrop-blur-md">
+                <div className="container mx-auto px-4">
+                    <div className="flex items-center md:justify-between h-20">
+                        {/* Mobile Menu Button */}
+                        <button 
+                            onClick={toggleNav}
+                            className='text-white md:hidden p-2 hover:bg-slate-700/50 rounded-lg transition-colors duration-200'
+                        >
+                            <HiMenuAlt1 size={28} />
+                        </button>
+
+                        {/* Logo */}
+                        <Link 
+                            href={'/'} 
+                            className="flex items-center space-x-3 group cursor-pointer"
+                        >
+                            <span className='text-5xl text-red-500 group-hover:scale-110 transition-transform duration-200 drop-shadow-lg'>
+                                <TiNews />
+                            </span>
+                            <span className="text-white text-2xl font-bold tracking-tight group-hover:text-red-400 transition-colors duration-200">
+                                TrendLines
+                            </span>
+                        </Link>
+
+                        {/* Desktop Navigation */}
+                        <nav className="hidden lg:flex items-center space-x-1">
+                            {navItems.slice(1).map((item) => (
+                                <Link 
+                                    key={item.href}
+                                    href={item.href}
+                                    className="relative px-4 py-2 text-white font-medium hover:text-red-400 transition-colors duration-200 group"
+                                >
+                                    {item.label}
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full transition-all duration-300"></span>
+                                </Link>
+                            ))}
+                        </nav>
+
+                        {/* Desktop Search */}
+                        <form className='hidden md:block' onSubmit={(e) => e.preventDefault()}>
+                            <div className="relative w-64 lg:w-72">
+                                <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                                    <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </div>
+                                <input 
+                                    type="search" 
+                                    className="w-full py-2.5 pl-12 pr-4 text-sm text-white bg-slate-700/50 border border-slate-600 rounded-xl placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                                    placeholder="Search news..." 
+                                />
                             </div>
-                            <input type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search News!" required />
-                            <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </header>
+
+            {/* Spacer for fixed header */}
+            <div className="h-20"></div>
         </>
     )
 }
