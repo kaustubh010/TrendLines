@@ -43,7 +43,7 @@ export default function News(props) {
   const updateNews = async () => {
     try {
       props.setProgress(10);
-      const url = `https://api.nytimes.com/svc/news/v3/content/all/${props.category}.json?api-key=j1XOfD0tWFHQxx02ooeeA0iisGK4Z0xH`;
+      const url = `https://api.nytimes.com/svc/news/v3/content/all/${props.category}.json?api-key=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`;
       setLoading(true)
       setError(null)
       
