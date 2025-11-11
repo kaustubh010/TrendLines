@@ -158,7 +158,7 @@ export default function News(props) {
                         key={element.slug_name || element.url}
                         title={element.title} 
                         description={element.abstract} 
-                        imageUrl={element.multimedia[3]?.url || element.multimedia[0]?.url} 
+                        imageUrl={element.multimedia[2]?.url || element.multimedia[0]?.url} 
                         newsUrl={element.url} 
                         author={element.byline} 
                         date={element.published_date}
